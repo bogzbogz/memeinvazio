@@ -1,0 +1,1 @@
+memeinvazio frontend kódjának fejlesztése
