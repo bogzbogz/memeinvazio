@@ -8,8 +8,8 @@ async function register() {
     const psw = document.getElementById('psw').value;
     const psw2 = document.getElementById('psw2').value;
 
-    if (psw !== psw2){
-        return alert('A két jelszó nem egyezik!')
+    if (psw !== psw2) {
+        return alert('A két jelszó nem egyezik!');
     }
 
     try {
@@ -18,14 +18,14 @@ async function register() {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({email, name, psw})
+            body: JSON.stringify({ email, name, psw })
         });
 
-       // console.log(response)
-       const data = await response.json();
-       console.log(data);
-
-        if(response.ok){
+        //console.log(response);
+        const data = await response.json();
+        console.log(data);
+        
+        if (response.ok) {
             alert(data.message);
             window.location.href = '../html/login.html';
         } else if (data.errors) {
@@ -34,13 +34,12 @@ async function register() {
                 errorMessage += `${sor.error}\n`;
             });
             alert(errorMessage);
-        }else if(data.error){
+        } else if (data.error) {
             alert(data.error);
-        }else{
-            alert('Ismeretlen hiba')
+        } else {
+            alert('Ismeretlen hiba');
         }
-
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 }

@@ -78,7 +78,9 @@ input {
 }
 
 @media screen and (max-width: 500px) {
-    .login, .input {
+
+    .login,
+    .input {
         width: 340px;
     }
 }
