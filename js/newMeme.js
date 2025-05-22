@@ -1,10 +1,13 @@
+// globális változók
 const fileUpload = document.querySelector('#fileUpload');
+const btnUpload = document.querySelector('#ű.uploadButton');
 let meme = null;
 
-
+// események
 fileUpload.addEventListener('change',selectPic);
+btnUpload.addEventListener('click', uploadmeme);
 
-
+// függvények
 async function selectPic(){
     const file = fileUpload.files[0];
     console.log(file);
@@ -18,5 +21,26 @@ async function selectPic(){
             newMeme.style.backgroundRepeat = 'no-repeat';
         }
         reader.readAsDataURL(file);
+    }
+}
+
+async function uploadMeme() {
+    try {
+        if(meme){
+            const formData = new FormData;
+            formData.append('meme', meme);
+            //console.log(formData);
+
+            const response = await fetch('http://127.0.0.1:3000/api/memes/uploadMeme', {
+                method: 'POST',
+                body: formData,
+                credentials: 'include'
+            });
+        }
+        else{
+            alert('Válassz ki egy képet!');
+        }
+    } catch (error) {
+        console.log(error);
     }
 }
